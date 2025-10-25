@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Genesis Collective</title>
     <style>
-        /* Base CSS - Clean & Professional Style */
+        /* Base CSS - Clean & Professional Style (Cyberpunk/Neon Theme) */
         :root {
             --color-dark: #0a0a2a;
             --color-gold: #FFD700;
             --color-cyan: #00FFFF;
             --color-text: #E0E0FF;
             --color-bg-light: #1c1c4f;
-            --color-danger: #ff4d4d; /* For Disconnected State */
-            --color-primary-accent: #00bfff; /* Sky Blue/Deep Cyan for accents */
-            --color-secondary-accent: #ff00ff; /* Magenta for secondary glow */
+            --color-danger: #ff4d4d;
+            --color-primary-accent: #00bfff;
         }
 
         body {
@@ -24,14 +23,10 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            min-height: 100vh; /* Ensure full viewport height */
+            min-height: 100vh;
             position: relative;
             overflow-x: hidden;
         }
-
-        /* --- STYLES FOR MEMUKAU BACKGROUND --- */
-
-        /* 1. Subtle Radial Gradient */
         body::before {
             content: '';
             position: fixed;
@@ -43,40 +38,35 @@
                         radial-gradient(circle at 80% 90%, rgba(255, 0, 255, 0.1), transparent 40%);
             z-index: -2;
         }
-
-        /* 2. Grid/Circuit Pattern Overlay (Optional but Cool) */
         .background-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(to right, rgba(0, 255, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 215, 0, 0.08) 1px, transparent 1px);
-            background-size: 50px 50px; /* Adjust size for grid density */
+            background-image: linear-gradient(to right, rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 215, 0, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
             opacity: 0.3;
             z-index: -1;
             pointer-events: none;
         }
-        /* --- END BACKGROUND STYLES --- */
 
         .container {
             width: 90%;
             max-width: 1200px;
             margin: auto;
             padding: 20px 0;
-            position: relative; /* Ensure content is above background effects */
+            position: relative;
             z-index: 10;
         }
 
         header {
-            background-color: rgba(28, 28, 79, 0.85); /* Slightly transparent background */
+            background-color: rgba(28, 28, 79, 0.85);
             padding: 15px 0;
             border-bottom: 2px solid var(--color-gold);
             text-align: center;
-            backdrop-filter: blur(5px); /* Add a slight blur effect */
-            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
             position: sticky;
             top: 0;
             z-index: 20;
@@ -84,7 +74,7 @@
         
         header h1 {
             color: var(--color-cyan);
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Neon glow effect */
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         /* Wallet Status and Connect Button */
@@ -121,13 +111,13 @@
         }
 
         .card {
-            background-color: rgba(28, 28, 79, 0.9); /* Slightly darker/more opaque card */
+            background-color: rgba(28, 28, 79, 0.9);
             padding: 30px;
             border-radius: 12px;
             flex: 1;
             min-width: 300px;
             border: 1px solid rgba(255, 215, 0, 0.5);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2); /* Stronger glow */
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -256,43 +246,6 @@
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
         }
         
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9em;
-            background-color: rgba(10, 10, 42, 0.8);
-        }
-
-        footer a {
-            color: var(--color-cyan);
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: var(--color-gold);
-        }
-        
-        /* Utility List Styling */
-        section ul {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0;
-        }
-
-        section ul li {
-            background-color: var(--color-bg-light);
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 5px solid var(--color-cyan);
-            text-align: left;
-        }
-        
         /* Media Queries for Mobile */
         @media (max-width: 768px) {
             .hero-section {
@@ -304,86 +257,16 @@
         }
     </style>
     
-    <script>
-        const TOKEN_RATE = 5000; // 1 USDC = 5,000 $COLLECT
-
-        // --- WEB3 PLACEHOLDER FUNCTIONS ---
-        function connectWallet() {
-            alert('Connecting to Wallet...');
-            console.log('Connecting to Wallet (e.g., MetaMask)...');
-            // Implementasikan logika Web3.js / Ethers.js di sini
-            // Untuk demo, kita ubah status menjadi Connected
-            const statusText = document.getElementById('wallet-status-text');
-            const connectBtn = document.getElementById('connect-wallet-btn');
-            statusText.textContent = 'Wallet: 0x...a1b2c3d4 (Connected)';
-            statusText.style.color = '#39ff14'; // Neon Green
-            connectBtn.textContent = 'Wallet Connected';
-            connectBtn.disabled = true;
-            connectBtn.style.backgroundColor = '#39ff14';
-            connectBtn.style.boxShadow = '0 0 15px #39ff14';
-        }
-
-        function mintNFT() {
-            // Dapatkan jumlah NFT dari input
-            const quantity = document.getElementById('nft-quantity').value;
-            alert(`Minting ${quantity} $GEN NFT(s). Check your wallet for transaction confirmation.`);
-            console.log(`Initiating Smart Contract Mint for ${quantity} NFT(s).`);
-            // Implementasikan logika Smart Contract Mint NFT (ERC-721) di sini
-        }
-
-        function mintToken() {
-            // Dapatkan jumlah USDC yang akan dibeli dari input
-            const usdcAmount = document.getElementById('usdc-amount').value;
-            const receiveText = document.getElementById('token-receive').value;
-            alert(`Buying $COLLECT with ${usdcAmount} USDC. You will ${receiveText}. Check your wallet for transaction confirmation.`);
-            console.log(`Initiating Smart Contract Purchase for ${usdcAmount} USDC.`);
-            // Implementasikan logika Smart Contract Buy Token (ERC-20) di sini
-        }
-
-        // --- UTILITY FUNCTIONS ---
-        function updateTokenReceive() {
-            const usdcInput = document.getElementById('usdc-amount');
-            const tokenOutput = document.getElementById('token-receive');
-            
-            // Bersihkan input dan batasi agar hanya angka
-            let usdcAmount = parseFloat(usdcInput.value.replace(/,/g, ''));
-            
-            // Batasi nilai agar minimal 1
-            if (isNaN(usdcAmount) || usdcAmount < 1) {
-                usdcAmount = 0;
-                tokenOutput.value = 'Receive: 0 $COLLECT';
-                return;
-            }
-            
-            // Update input value (optional: to clean up if user typed non-numeric)
-            usdcInput.value = usdcAmount;
-
-            const receivedTokens = usdcAmount * TOKEN_RATE;
-            
-            // Format angka dengan pemisah ribuan
-            const formattedTokens = receivedTokens.toLocaleString('en', { 
-                minimumFractionDigits: 0, 
-                maximumFractionDigits: 0 
-            });
-
-            tokenOutput.value = `Receive: ${formattedTokens} $COLLECT`;
-        }
-
-        // Jalankan saat halaman dimuat untuk mengatur nilai awal
-        window.onload = function() {
-            updateTokenReceive();
-            // Tambahkan event listener untuk memanggil updateTokenReceive setiap kali input berubah
-            document.getElementById('usdc-amount').addEventListener('input', updateTokenReceive);
-        };
-    </script>
 </head>
 <body>
     
-    <div class="background-overlay"></div> <header>
+    <div class="background-overlay"></div> 
+    
+    <header>
         <div class="container">
             <div id="wallet-status">
                 <span id="wallet-status-text" style="color: var(--color-danger);">Wallet Disconnected</span>
-                <button id="connect-wallet-btn" onclick="connectWallet()">Connect Wallet (EVM)</button>
+                <button id="connect-wallet-btn" >Connect Wallet (EVM)</button>
             </div>
             <h1>THE GENESIS COLLECTIVE</h1>
             <p>Exclusive ownership & mass utility. Fully Tracked on X402Scan.</p>
@@ -405,11 +288,11 @@
                 
                 <div class="input-group">
                     <input type="number" id="nft-quantity" placeholder="Quantity (Max 10 per Tx)" value="1" min="1" max="10">
-                    <p style="margin: 5px 0; font-weight: bold; font-size: 0.9em; color: var(--color-gold);">
-                        NFT Price (TBD): Determined by Smart Contract
+                    <p id="nft-price-display" style="margin: 5px 0; font-weight: bold; font-size: 0.9em; color: var(--color-gold);">
+                        Price: 10 USDC per NFT
                     </p>
                     
-                    <button class="cta-button cta-mint-nft" onclick="mintNFT()">
+                    <button class="cta-button cta-mint-nft" id="mint-nft-btn">
                         MINT $GEN NFT
                     </button>
                 </div>
@@ -429,7 +312,7 @@
                     <input type="number" id="usdc-amount" placeholder="USDC Amount to Spend (Min 1)" value="10" min="1">
                     <input type="text" id="token-receive" value="Receive: 50,000 $COLLECT" readonly>
                     
-                    <button class="cta-button cta-mint-token" onclick="mintToken()">
+                    <button class="cta-button cta-mint-token" id="mint-token-btn">
                         BUY $COLLECT TOKEN
                     </button>
                 </div>
@@ -469,19 +352,231 @@
             </ul>
         </section>
         
+        <div id="status-and-error" style="text-align: center; margin-top: 30px;">
+            <div id="gas-display" style="color: var(--color-text);"></div> 
+            <div id="status-message" style="color: #39ff14; font-weight: bold; margin-top: 10px;"></div>
+            <div id="error-message" style="color: var(--color-danger); font-weight: bold; margin-top: 5px;"></div>
+        </div>
+        
     </div>
 
     <footer>
         <p>
-            Contract Transparency Verification: <a href="https://www.x402scan.com/" target="_blank">X402Scan Explorer</a>
+            Contract Transparency Verification: <a href="https://basescan.org" target="_blank">BaseScan Explorer</a>
         </p>
         <p>
             <a href="#">Twitter</a> | 
             <a href="#">Discord</a> | 
             <a href="#">Litepaper</a>
         </p>
-        <p style="margin-top: 10px; font-size: 0.8em;">**Disclaimer:** All funds from Minting are sent directly to the project's designated Owner Wallet as per smart contract design. Trading crypto assets is highly risky.</p>
+        <p style="margin-top: 10px; font-size: 0.8em;">**Disclaimer:** Trading crypto assets is highly risky. Use at your own risk.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+
+    <script>
+        // *******************************************************************
+        // KONFIGURASI WEB3 DAN LOGIKA
+        // *******************************************************************
+
+        const TOKEN_RATE = 5000;         // 1 USDC = 5,000 $COLLECT
+        const NFT_PRICE_USD = 10;        // 1 NFT = 10 USDC
+        const BASE_USD_PRICE = 1000000;  // 1 USDC (dalam 6 desimal USDC)
+        const CHAIN_ID = 8453;           // Base Mainnet
+
+        // --- ALAMAT KONTRAK WAJIB DI GANTI ---
+        // Ganti dengan alamat yang benar setelah deployment
+        const NFT_SALE_CONTRACT = "0x...NFT_SALE_ADDRESS..."; 
+        const TOKEN_SALE_CONTRACT = "0x...TOKEN_SALE_ADDRESS..."; 
+        const USDC_CONTRACT_ADDRESS = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"; // USDC Base Mainnet
+        
+        // --- RELAYER / BACKEND ---
+        // Ganti dengan domain API yang sudah terkonfigurasi Nginx/HTTPS
+        const RELAYER_URL_BASE = "https://api.us-ai.fun"; 
+
+        // --- Variabel Global ---
+        let signer;
+        let provider;
+        let userAddress;
+
+        // Element UI
+        const gasDisplay = document.getElementById('gas-display');
+        const statusMessage = document.getElementById('status-message');
+        const errorMessage = document.getElementById('error-message');
+        const connectBtn = document.getElementById('connect-wallet-btn');
+        const nftMintBtn = document.getElementById('mint-nft-btn');
+        const tokenMintBtn = document.getElementById('mint-token-btn');
+        const walletStatusText = document.getElementById('wallet-status-text');
+
+        // ABI Minimal untuk fungsi mintWithPermit dan wallet()
+        const saleAbi = ["function wallet() view returns (address)"];
+
+
+        // *******************************************************************
+        // FUNGSI UTAMA 1: KONEKSI WALLET
+        // *******************************************************************
+
+        async function connectWallet() {
+            errorMessage.textContent = '';
+            statusMessage.textContent = 'Connecting...';
+
+            if (typeof window.ethereum === 'undefined') {
+                errorMessage.textContent = 'MetaMask atau dompet EVM tidak terdeteksi.';
+                return;
+            }
+
+            try {
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                provider = new ethers.providers.Web3Provider(window.ethereum);
+                signer = provider.getSigner();
+                userAddress = await signer.getAddress();
+
+                const { chainId } = await provider.getNetwork();
+                if (chainId !== CHAIN_ID) {
+                    errorMessage.textContent = 'Harap pindah ke jaringan Base Mainnet.';
+                    return;
+                }
+
+                // Deteksi Harga Gas
+                const feeData = await provider.getFeeData();
+                const gasPriceInGwei = feeData.gasPrice.div(1000000000);
+                gasDisplay.textContent = `⚡ Gas: ${gasPriceInGwei.toString()} Gwei (Gas dibayar oleh Server)`;
+
+
+                // Update UI sukses
+                walletStatusText.textContent = `Wallet: ${userAddress.substring(0, 6)}...${userAddress.substring(38)} (Connected)`;
+                walletStatusText.style.color = '#39ff14';
+                connectBtn.textContent = 'Wallet Connected';
+                connectBtn.disabled = true;
+
+            } catch (error) {
+                console.error("Koneksi Wallet Gagal:", error);
+                walletStatusText.textContent = 'Wallet Disconnected';
+                walletStatusText.style.color = 'var(--color-danger)';
+            }
+        }
+
+        // *******************************************************************
+        // FUNGSI UTAMA 2: MINT NFT (POST ke Relayer /mint-nft)
+        // *******************************************************************
+
+        async function mintNFT() {
+            if (!signer) return alert("Harap hubungkan dompet terlebih dahulu.");
+            
+            const quantity = document.getElementById('nft-quantity').value;
+            if (parseInt(quantity) < 1) return alert("Jumlah NFT minimal 1.");
+            
+            statusMessage.textContent = '1. Meminta Tanda Tangan Permit... (Gratis)';
+
+            // --- LOGIKA PERMIT SIGNATURE ---
+            const totalUSDCAmount = parseFloat(quantity) * NFT_PRICE_USD;
+            const valueWei = (totalUSDCAmount * BASE_USD_PRICE).toString();
+            
+            try {
+                // 1. Ambil Alamat Owner (untuk Permit)
+                const saleContract = new ethers.Contract(NFT_SALE_CONTRACT, saleAbi, provider);
+                const ownerWalletAddress = await saleContract.wallet();
+                
+                // 2. Buat Payload Permit
+                const nonce = ethers.utils.solidityKeccak256(["uint256", "uint256"], [userAddress, Date.now()]);
+                const message = {
+                    from: userAddress,
+                    to: ownerWalletAddress, // WAJIB: Alamat Owner Anda
+                    value: valueWei, // Total USDC dalam Wei
+                    validAfter: 0,
+                    validBefore: Math.floor(Date.now() / 1000) + 900, 
+                    nonce: nonce,
+                };
+                
+                // 3. Tandatangani (Pop-up Gratis)
+                const signature = await signer._signTypedData({ name: 'USD Coin', version: '2', chainId: CHAIN_ID, verifyingContract: USDC_CONTRACT_ADDRESS }, 
+                    { TransferWithAuthorization: [{ name: 'from', type: 'address' }, { name: 'to', type: 'address' }, { name: 'value', type: 'uint256' }, { name: 'validAfter', type: 'uint256' }, { name: 'validBefore', type: 'uint256' }, { name: 'nonce', type: 'bytes32' }] }, 
+                    message);
+                const sigParts = ethers.utils.splitSignature(signature);
+
+                statusMessage.textContent = '2. Signature didapatkan. Mengirim ke Relayer...';
+
+                // 4. Kirim ke Endpoint NFT BARU
+                const response = await fetch(`${RELAYER_URL_BASE}/mint-nft`, { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        buyerAddress: userAddress,
+                        quantity: quantity, 
+                        validAfter: message.validAfter,
+                        validBefore: message.validBefore,
+                        nonce: message.nonce,
+                        v: sigParts.v,
+                        r: sigParts.r,
+                        s: sigParts.s
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorBody = await response.json(); // Asumsikan server mengirim JSON error
+                    throw new Error(errorBody.error || `Server error (Status ${response.status})`);
+                }
+
+                const result = await response.json();
+                
+                if (!result.success) {
+                    throw new Error(result.error || "Mint NFT Gagal: Transaksi tidak berhasil.");
+                }
+
+                alert(`MINT NFT SUKSES! Tx Hash: ${result.txHash}`);
+                statusMessage.textContent = `✅ Mint NFT SUKSES! Tx: ${result.txHash.substring(0,10)}...`;
+
+
+            } catch (error) {
+                console.error("Mint NFT Gagal:", error);
+                errorMessage.textContent = `Mint NFT Gagal: ${error.message || "Cek log konsol."}`;
+            }
+        }
+
+        // *******************************************************************
+        // FUNGSI UTAMA 3: BELI TOKEN (POST ke Relayer /buy-token)
+        // *******************************************************************
+
+        async function mintToken() {
+            if (!signer) return alert("Harap hubungkan dompet terlebih dahulu.");
+            
+            const usdcAmount = document.getElementById('usdc-amount').value;
+            if (parseFloat(usdcAmount) < 1) return alert("Pembelian minimal 1 USDC.");
+
+            // ... (Logika Permit Signature & Pengiriman ke /buy-token sama) ...
+        }
+
+        // --- UTILITY FUNCTIONS ---
+        function updateTokenReceive() {
+            const usdcInput = document.getElementById('usdc-amount');
+            const tokenOutput = document.getElementById('token-receive');
+            const usdcAmount = parseFloat(usdcInput.value.replace(/,/g, ''));
+            
+            if (isNaN(usdcAmount) || usdcAmount < 1) {
+                usdcInput.value = 1;
+                tokenOutput.value = 'Receive: 5,000 $COLLECT';
+                return;
+            }
+            
+            usdcInput.value = usdcAmount;
+            const receivedTokens = usdcAmount * TOKEN_RATE;
+            const formattedTokens = receivedTokens.toLocaleString('en', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+            tokenOutput.value = `Receive: ${formattedTokens} $COLLECT`;
+        }
+
+        // *******************************************************************
+        // EVENT LISTENERS
+        // *******************************************************************
+        
+        window.onload = function() {
+            updateTokenReceive();
+            document.getElementById('usdc-amount').addEventListener('input', updateTokenReceive);
+            connectBtn.addEventListener('click', connectWallet);
+            nftMintBtn.addEventListener('click', mintNFT);
+            tokenMintBtn.addEventListener('click', mintToken);
+        };
+        
+    </script>
 </body>
 </html>
