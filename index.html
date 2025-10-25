@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Genesis Collective - NFT & Token Launch</title>
+    <style>
+        /* CSS Dasar - Gaya Bersih & Profesional */
+        :root {
+            --color-dark: #0a0a2a;
+            --color-gold: #FFD700;
+            --color-cyan: #00FFFF;
+            --color-text: #E0E0FF;
+            --color-bg-light: #1c1c4f;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--color-dark);
+            color: var(--color-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        header {
+            background-color: #1c1c4f;
+            padding: 15px 0;
+            border-bottom: 2px solid var(--color-cyan);
+            text-align: center;
+        }
+        
+        /* Hero Section - Dual Panel Layout */
+        .hero-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .card {
+            background-color: var(--color-bg-light);
+            padding: 30px;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+
+        .card h2 {
+            color: var(--color-gold);
+            margin-top: 0;
+        }
+
+        .logo-placeholder {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nft-logo {
+            background-color: var(--color-gold);
+            color: var(--color-dark);
+            border: 5px solid var(--color-cyan);
+        }
+
+        .token-logo {
+            background-color: var(--color-cyan);
+            color: var(--color-dark);
+            border: 5px solid var(--color-gold);
+        }
+        
+        /* Tombol CTA */
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cta-mint {
+            background-color: var(--color-gold);
+            color: var(--color-dark);
+        }
+
+        .cta-claim {
+            background-color: var(--color-cyan);
+            color: var(--color-dark);
+        }
+        
+        .cta-mint:hover, .cta-claim:hover {
+            opacity: 0.9;
+        }
+        
+        /* Bagian Tokenomics */
+        .tokenomics-section {
+            background-color: var(--color-bg-light);
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .tokenomics-item h3 {
+            color: var(--color-gold);
+            margin-bottom: 5px;
+        }
+
+        .rate {
+            background-color: var(--color-dark);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1.2em;
+            border: 1px solid var(--color-gold);
+        }
+        
+        /* Footer/Kredibilitas */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: var(--color-cyan);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        /* Media Queries untuk Ponsel */
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+            }
+            .tokenomics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>THE GENESIS COLLECTIVE</h1>
+            <p>Ownership meets Utility. Fully Tracked on X402Scan.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero-section">
+            
+            <div class="card nft-card">
+                <div class="logo-placeholder nft-logo">NFT $GEN</div>
+                <h2>GENESIS NFT ACCESS ($GEN)</h2>
+                <p>Supply Terbatas: **10,000 NFT**</p>
+                <p>Kunci Klaim Token, Airdrop Pass, & Zero-Fee Trading.</p>
+                
+                <p style="font-size: 1.5em; color: var(--color-gold);">
+                    **1 NFT = KLAIM 10.000 $COLLECT**
+                </p>
+                
+                <button class="cta-button cta-mint" onclick="alert('Fungsi Mint diaktifkan!')">
+                    MINT $GEN NFT SEKARANG
+                </button>
+            </div>
+
+            <div class="card token-card">
+                <div class="logo-placeholder token-logo">Token $COLLECT</div>
+                <h2>COLLECTIVE UTILITY TOKEN ($COLLECT)</h2>
+                <p>Supply Total: **1.000.000.000 (1B)**</p>
+                <p>Token Komunitas Utama, DeFi Ready.</p>
+                
+                <div class="rate">
+                    **RATE MINT:** 10 USDC = 50.000 $COLLECT
+                </div>
+
+                <button class="cta-button cta-claim" onclick="alert('Fungsi Klaim/Beli diaktifkan!')">
+                    CLAIM $COLLECT TOKEN
+                </button>
+            </div>
+            
+        </section>
+        
+        <section class="tokenomics-section">
+            <h2>TOKENOMICS & DISTRIBUSI $COLLECT</h2>
+            <p style="margin-bottom: 30px;">Dirancang dengan fokus pada distribusi massal, likuiditas kuat, dan transparansi.</p>
+
+            <div class="tokenomics-grid">
+                <div class="tokenomics-item">
+                    <h3 style="color: var(--color-cyan);">50%</h3>
+                    <p><strong>MINT & KLAIM</strong></p>
+                    <p>Dialokasikan untuk pemegang NFT $GEN dan Minting Publik Awal.</p>
+                </div>
+                <div class="tokenomics-item">
+                    <h3 style="color: var(--color-cyan);">40%</h3>
+                    <p><strong>POOL LIKUIDITAS (LP)</strong></p>
+                    <p>Dikunci permanen untuk menjamin kedalaman pasar dan trading yang stabil.</p>
+                </div>
+                <div class="tokenomics-item">
+                    <h3 style="color: var(--color-cyan);">10%</h3>
+                    <p><strong>TREASURY & DEV</strong></p>
+                    <p>Untuk Marketing, Listing CEX, dan Pengembangan Proyek Jangka Panjang.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="padding: 40px 0; margin-top: 20px;">
+            <h2 style="text-align: center; color: var(--color-gold);">UTILITAS EKSKLUSIF NFT $GEN</h2>
+            <ul style="list-style-type: none; padding: 0; text-align: center;">
+                <li style="margin: 10px 0;">💎 **Klaim Tetap 1:10000:** Setiap NFT menjamin 10.000 $COLLECT Token.</li>
+                <li style="margin: 10px 0;">🔥 **Fee Deflationary Lock:** Transaksi NFT holder **membakar** supply $COLLECT (Deflasi Aktif).</li>
+                <li style="margin: 10px 0;">🚀 **Alpha Airdrop Pass:** Jaminan Whitelist dan Alokasi di SEMUA proyek di masa depan.</li>
+            </ul>
+        </section>
+        
+    </div>
+
+    <footer>
+        <p>
+            Verifikasi Transparansi Kontrak: <a href="https://www.x402scan.com/" target="_blank">X402Scan Explorer</a>
+        </p>
+        <p>
+            <a href="#">Twitter</a> | 
+            <a href="#">Discord</a> | 
+            <a href="#">Litepaper</a>
+        </p>
+    </footer>
+
+</body>
+</html>
