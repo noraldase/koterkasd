@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Genesis Collective - Premium NFT & Utility Token</title>
+    <title>The Genesis Collective</title>
     <style>
         /* Base CSS - Clean & Professional Style */
         :root {
@@ -13,57 +13,15 @@
             --color-text: #E0E0FF;
             --color-bg-light: #1c1c4f;
             --color-danger: #ff4d4d; /* For Disconnected State */
-            --color-darker-blue: #02021a;
-            --color-deep-space-blue: #0c0c2a;
         }
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: var(--color-darker-blue); /* Starting background */
+            background-color: var(--color-dark);
             color: var(--color-text);
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll from background animation */
-            
-            /* --- Memukau Background START --- */
-            background: 
-                radial-gradient(ellipse at bottom, var(--color-deep-space-blue) 0%, var(--color-darker-blue) 100%),
-                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgODAwIDgwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48ZmlsdGVyIGlkPSJmZWF0aGVyIiB4PSItMTAlIiB5PSItMTAlIiB3aWR0aD0iMTIwJSIgaGVpZ2h0PSIxMjAlIj48ZmVBdHRyaWJ1dGVTdHJpbmcgdHlwZT0iaHVlUm90YXRlIiB2YWx1ZXM9IjAgMjcwIDM2MCAyNzAgNzIwIDQ1MCA5NjAgNjAwIiByZXN1bHQ9ImZpbHRlcnBlciI+PC9mZWF0ZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDEwYTIxIj48L3JlY3Q+PHBhdGggZD0iTTAgMGgzMjB2NDgwSDB6TTMyMCAyNDBoNDgwdjU2MEgzMjB6IiBmaWxsPSIjMDEwYTI1IiBmaWx0ZXI9InVybCgjZmVhdGhlcikiPjwvcGF0aD48L3N2Zz4=') no-repeat center center fixed, /* A subtle, animated SVG texture */
-                linear-gradient(135deg, rgba(0,255,255,0.1) 0%, rgba(255,215,0,0.1) 50%, rgba(0,255,255,0.1) 100%), /* Fading glow */
-                linear-gradient(-45deg, #0f0f3a, #05051a, #0f0f3a); /* Base deep space gradient */
-            background-size: cover, cover, cover, 400% 400%; /* Cover for all, but larger for animation */
-            animation: gradientAnimation 15s ease infinite; /* Animasi gradient */
-            position: relative; /* Untuk pseudo-element bintang */
-            /* --- Memukau Background END --- */
-        }
-
-        /* Pseudo-element untuk efek bintang */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=') repeat, /* Empty image, but we will make it stars */
-                radial-gradient(circle at 15% 50%, rgba(0,255,255,0.15) 0%, transparent 20%),
-                radial-gradient(circle at 85% 50%, rgba(255,215,0,0.15) 0%, transparent 20%);
-            pointer-events: none;
-            z-index: -1; /* Di belakang konten */
-            animation: twinkleStars 20s linear infinite; /* Animasi bintang */
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%, center center, center center, 0% 50%; }
-            50% { background-position: 100% 50%, center center, center center, 100% 50%; }
-            100% { background-position: 0% 50%, center center, center center, 0% 50%; }
-        }
-
-        @keyframes twinkleStars {
-            0% { background-position: 0% 0%, 0% 0%, 0% 0%; }
-            100% { background-position: 100% 100%, 100% 100%, 100% 100%; }
         }
 
         .container {
@@ -71,17 +29,13 @@
             max-width: 1200px;
             margin: auto;
             padding: 20px 0;
-            position: relative; /* Pastikan konten di atas background */
-            z-index: 1;
         }
 
         header {
-            background-color: rgba(28, 28, 79, 0.8); /* Semi-transparan */
+            background-color: #1c1c4f;
             padding: 15px 0;
             border-bottom: 2px solid var(--color-gold);
             text-align: center;
-            backdrop-filter: blur(5px); /* Efek blur pada background di belakang header */
-            -webkit-backdrop-filter: blur(5px);
         }
 
         /* Wallet Status and Connect Button */
@@ -116,15 +70,13 @@
         }
 
         .card {
-            background-color: rgba(28, 28, 79, 0.85); /* Semi-transparan */
+            background-color: var(--color-bg-light);
             padding: 30px;
             border-radius: 12px;
             flex: 1;
             min-width: 300px;
             border: 1px solid rgba(255, 215, 0, 0.3);
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
-            backdrop-filter: blur(3px); /* Efek blur pada background di belakang card */
-            -webkit-backdrop-filter: blur(3px);
         }
 
         .card h2 {
@@ -142,12 +94,18 @@
             justify-content: center;
             font-size: 1.5em;
             font-weight: bold;
-            /* Tambahan untuk visualisasi logo */
-            background-image: linear-gradient(45deg, var(--color-cyan), var(--color-gold));
-            box-shadow: 0 0 15px var(--color-cyan), 0 0 25px var(--color-gold);
+        }
+
+        .nft-logo {
+            background-color: var(--color-gold);
             color: var(--color-dark);
         }
 
+        .token-logo {
+            background-color: var(--color-cyan);
+            color: var(--color-dark);
+        }
+        
         /* Input and Button Group */
         .input-group {
             margin-top: 15px;
@@ -160,7 +118,7 @@
             padding: 10px;
             border-radius: 5px;
             border: 1px solid var(--color-cyan);
-            background-color: rgba(10, 10, 42, 0.7); /* Semi-transparan */
+            background-color: var(--color-dark);
             color: var(--color-text);
             text-align: center;
         }
@@ -187,13 +145,11 @@
 
         /* Tokenomics Section */
         .tokenomics-section {
-            background-color: rgba(28, 28, 79, 0.85); /* Semi-transparan */
+            background-color: var(--color-bg-light);
             padding: 40px;
             border-radius: 12px;
             margin-top: 40px;
             text-align: left;
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
         }
 
         .tokenomics-grid {
@@ -216,7 +172,6 @@
             margin-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9em;
-            background-color: rgba(10, 10, 42, 0.6); /* Semi-transparan */
         }
 
         footer a {
@@ -246,13 +201,17 @@
         }
 
         function mintNFT() {
+            // Dapatkan jumlah NFT dari input
             const quantity = document.getElementById('nft-quantity').value;
             console.log(`Initiating Smart Contract Mint for ${quantity} NFT(s). Funds to Owner Wallet.`);
+            // Implementasikan logika Smart Contract Mint NFT (ERC-721) di sini
         }
 
         function mintToken() {
+            // Dapatkan jumlah USDC yang akan dibeli dari input
             const usdcAmount = document.getElementById('usdc-amount').value;
             console.log(`Initiating Smart Contract Purchase for ${usdcAmount} USDC. Funds to Owner Wallet.`);
+            // Implementasikan logika Smart Contract Buy Token (ERC-20) di sini
         }
 
         // --- UTILITY FUNCTIONS ---
@@ -260,6 +219,7 @@
             const usdcInput = document.getElementById('usdc-amount');
             const tokenOutput = document.getElementById('token-receive');
             
+            // Bersihkan input
             const usdcAmount = parseFloat(usdcInput.value.replace(/,/g, ''));
             
             if (isNaN(usdcAmount) || usdcAmount < 0) {
@@ -269,6 +229,7 @@
 
             const receivedTokens = usdcAmount * TOKEN_RATE;
             
+            // Format angka dengan pemisah ribuan (Locale 'en' for standard US/Crypto format)
             const formattedTokens = receivedTokens.toLocaleString('en', { 
                 minimumFractionDigits: 0, 
                 maximumFractionDigits: 0 
@@ -277,6 +238,7 @@
             tokenOutput.value = `Receive: ${formattedTokens} $COLLECT`;
         }
 
+        // Jalankan saat halaman dimuat untuk mengatur nilai awal
         window.onload = updateTokenReceive;
     </script>
 </head>
@@ -297,7 +259,7 @@
         <section class="hero-section">
             
             <div class="card nft-card">
-                <div class="logo-placeholder">NFT $GEN</div>
+                <div class="logo-placeholder nft-logo">NFT $GEN</div>
                 <h2>GENESIS NFT ACCESS ($GEN)</h2>
                 <p>Limited Supply: **10,000 NFT**</p>
                 <p>Key to Token Claim, Airdrop Pass, & Deflationary Trading.</p>
@@ -319,7 +281,7 @@
             </div>
 
             <div class="card token-card">
-                <div class="logo-placeholder">Token $COLLECT</div>
+                <div class="logo-placeholder token-logo">Token $COLLECT</div>
                 <h2>COLLECTIVE UTILITY TOKEN ($COLLECT)</h2>
                 <p>Total Supply: **1,000,000,000 (1B)**</p>
                 <p>Core Community Token, DeFi Ready.</p>
