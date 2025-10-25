@@ -192,29 +192,54 @@
     </style>
     
     <script>
-        // *** PENTING: FUNGSI INI HANYA PLACEHOLDER ***
-        // Untuk benar-benar berfungsi, Anda harus mengimplementasikan Web3.js atau Ethers.js
-        // untuk berinteraksi dengan MetaMask/Smart Contract.
+        const TOKEN_RATE = 5000; // 1 USDC = 5,000 $COLLECT
 
+        // --- WEB3 PLACEHOLDER FUNCTIONS ---
         function connectWallet() {
-            alert('Connecting to Wallet (e.g., MetaMask)...');
-            // Logic Web3 untuk meminta koneksi wallet dari pengguna
-            // Jika sukses: 
-            // document.getElementById('wallet-status-text').innerText = 'Connected: 0x123...456';
-            // document.getElementById('connect-wallet-btn').style.display = 'none';
+            console.log('Connecting to Wallet (e.g., MetaMask)...');
+            // Implementasikan logika Web3.js / Ethers.js di sini
         }
 
         function mintNFT() {
-            alert('Initiating NFT Mint via Smart Contract. Funds will go to Owner Wallet.');
-            // Logic Smart Contract Mint NFT (ERC-721)
-            // Function: safeMint(address recipient, uint256 quantity) payable
+            // Dapatkan jumlah NFT dari input
+            const quantity = document.getElementById('nft-quantity').value;
+            console.log(`Initiating Smart Contract Mint for ${quantity} NFT(s). Funds to Owner Wallet.`);
+            // Implementasikan logika Smart Contract Mint NFT (ERC-721) di sini
         }
 
         function mintToken() {
-            alert('Initiating Token Mint/Purchase via Smart Contract. Funds will go to Owner Wallet.');
-            // Logic Smart Contract Mint Token (ERC-20)
-            // Function: buyTokens() payable -- requires user to send USDC (or native coin)
+            // Dapatkan jumlah USDC yang akan dibeli dari input
+            const usdcAmount = document.getElementById('usdc-amount').value;
+            console.log(`Initiating Smart Contract Purchase for ${usdcAmount} USDC. Funds to Owner Wallet.`);
+            // Implementasikan logika Smart Contract Buy Token (ERC-20) di sini
         }
+
+        // --- UTILITY FUNCTIONS ---
+        function updateTokenReceive() {
+            const usdcInput = document.getElementById('usdc-amount');
+            const tokenOutput = document.getElementById('token-receive');
+            
+            // Bersihkan input
+            const usdcAmount = parseFloat(usdcInput.value.replace(/,/g, ''));
+            
+            if (isNaN(usdcAmount) || usdcAmount < 0) {
+                tokenOutput.value = 'Receive: 0 $COLLECT';
+                return;
+            }
+
+            const receivedTokens = usdcAmount * TOKEN_RATE;
+            
+            // Format angka dengan pemisah ribuan (Locale 'en' for standard US/Crypto format)
+            const formattedTokens = receivedTokens.toLocaleString('en', { 
+                minimumFractionDigits: 0, 
+                maximumFractionDigits: 0 
+            });
+
+            tokenOutput.value = `Receive: ${formattedTokens} $COLLECT`;
+        }
+
+        // Jalankan saat halaman dimuat untuk mengatur nilai awal
+        window.onload = updateTokenReceive;
     </script>
 </head>
 <body>
@@ -245,7 +270,10 @@
                 
                 <div class="input-group">
                     <input type="number" id="nft-quantity" placeholder="Quantity (Max 10 per Tx)" value="1" min="1" max="10">
-                    <input type="text" id="nft-price" value="Price: TBD (e.g., 50 USDC)" readonly>
+                    <p style="margin: 5px 0; font-weight: bold; font-size: 0.9em; color: var(--color-gold);">
+                        NFT Price (TBD): Determined by Smart Contract
+                    </p>
+                    
                     <button class="cta-button cta-mint-nft" onclick="mintNFT()">
                         MINT $GEN NFT
                     </button>
@@ -259,12 +287,13 @@
                 <p>Core Community Token, DeFi Ready.</p>
                 
                 <p style="font-size: 1.4em; color: var(--color-cyan);">
-                    **RATE:** 10 USDC = 50,000 $COLLECT
+                    **RATE:** 1 USDC = 5,000 $COLLECT
                 </p>
 
                 <div class="input-group">
-                    <input type="number" id="usdc-amount" placeholder="USDC Amount to Spend (Min 10)" value="10" min="10">
+                    <input type="number" id="usdc-amount" placeholder="USDC Amount to Spend (Min 1)" value="10" min="1" oninput="updateTokenReceive()">
                     <input type="text" id="token-receive" value="Receive: 50,000 $COLLECT" readonly>
+                    
                     <button class="cta-button cta-mint-token" onclick="mintToken()">
                         BUY $COLLECT TOKEN
                     </button>
