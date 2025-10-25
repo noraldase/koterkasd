@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Genesis Collective - NFT & Token Launch</title>
+    <title>The Genesis Collective</title>
     <style>
-        /* CSS Dasar - Gaya Bersih & Profesional */
+        /* Base CSS - Clean & Professional Style */
         :root {
             --color-dark: #0a0a2a;
             --color-gold: #FFD700;
             --color-cyan: #00FFFF;
             --color-text: #E0E0FF;
             --color-bg-light: #1c1c4f;
+            --color-danger: #ff4d4d; /* For Disconnected State */
         }
 
         body {
@@ -33,15 +34,37 @@
         header {
             background-color: #1c1c4f;
             padding: 15px 0;
-            border-bottom: 2px solid var(--color-cyan);
+            border-bottom: 2px solid var(--color-gold);
             text-align: center;
+        }
+
+        /* Wallet Status and Connect Button */
+        #wallet-status {
+            font-size: 0.9em;
+            padding: 10px 0;
+            text-align: right;
+        }
+
+        #connect-wallet-btn {
+            background-color: var(--color-cyan);
+            color: var(--color-dark);
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        #connect-wallet-btn:hover {
+            background-color: #66FFFF;
         }
         
         /* Hero Section - Dual Panel Layout */
         .hero-section {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
             padding: 60px 0;
             text-align: center;
         }
@@ -52,8 +75,8 @@
             border-radius: 12px;
             flex: 1;
             min-width: 300px;
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
         }
 
         .card h2 {
@@ -76,44 +99,51 @@
         .nft-logo {
             background-color: var(--color-gold);
             color: var(--color-dark);
-            border: 5px solid var(--color-cyan);
         }
 
         .token-logo {
             background-color: var(--color-cyan);
             color: var(--color-dark);
-            border: 5px solid var(--color-gold);
         }
         
-        /* Tombol CTA */
+        /* Input and Button Group */
+        .input-group {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-group input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--color-cyan);
+            background-color: var(--color-dark);
+            color: var(--color-text);
+            text-align: center;
+        }
+        
         .cta-button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
+            padding: 12px;
             border: none;
             border-radius: 8px;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
-        .cta-mint {
+        .cta-mint-nft {
             background-color: var(--color-gold);
             color: var(--color-dark);
         }
 
-        .cta-claim {
+        .cta-mint-token {
             background-color: var(--color-cyan);
             color: var(--color-dark);
         }
-        
-        .cta-mint:hover, .cta-claim:hover {
-            opacity: 0.9;
-        }
-        
-        /* Bagian Tokenomics */
+
+        /* Tokenomics Section */
         .tokenomics-section {
             background-color: var(--color-bg-light);
             padding: 40px;
@@ -131,20 +161,11 @@
         }
 
         .tokenomics-item h3 {
-            color: var(--color-gold);
+            color: var(--color-cyan);
             margin-bottom: 5px;
         }
-
-        .rate {
-            background-color: var(--color-dark);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-size: 1.2em;
-            border: 1px solid var(--color-gold);
-        }
         
-        /* Footer/Kredibilitas */
+        /* Footer */
         footer {
             text-align: center;
             padding: 30px 0;
@@ -159,7 +180,7 @@
             margin: 0 10px;
         }
         
-        /* Media Queries untuk Ponsel */
+        /* Media Queries for Mobile */
         @media (max-width: 768px) {
             .hero-section {
                 flex-direction: column;
@@ -169,13 +190,43 @@
             }
         }
     </style>
+    
+    <script>
+        // *** PENTING: FUNGSI INI HANYA PLACEHOLDER ***
+        // Untuk benar-benar berfungsi, Anda harus mengimplementasikan Web3.js atau Ethers.js
+        // untuk berinteraksi dengan MetaMask/Smart Contract.
+
+        function connectWallet() {
+            alert('Connecting to Wallet (e.g., MetaMask)...');
+            // Logic Web3 untuk meminta koneksi wallet dari pengguna
+            // Jika sukses: 
+            // document.getElementById('wallet-status-text').innerText = 'Connected: 0x123...456';
+            // document.getElementById('connect-wallet-btn').style.display = 'none';
+        }
+
+        function mintNFT() {
+            alert('Initiating NFT Mint via Smart Contract. Funds will go to Owner Wallet.');
+            // Logic Smart Contract Mint NFT (ERC-721)
+            // Function: safeMint(address recipient, uint256 quantity) payable
+        }
+
+        function mintToken() {
+            alert('Initiating Token Mint/Purchase via Smart Contract. Funds will go to Owner Wallet.');
+            // Logic Smart Contract Mint Token (ERC-20)
+            // Function: buyTokens() payable -- requires user to send USDC (or native coin)
+        }
+    </script>
 </head>
 <body>
 
     <header>
         <div class="container">
+            <div id="wallet-status">
+                <span id="wallet-status-text" style="color: var(--color-danger);">Wallet Disconnected</span>
+                <button id="connect-wallet-btn" onclick="connectWallet()">Connect Wallet (EVM)</button>
+            </div>
             <h1>THE GENESIS COLLECTIVE</h1>
-            <p>Ownership meets Utility. Fully Tracked on X402Scan.</p>
+            <p>Exclusive ownership & mass utility. Fully Tracked on X402Scan.</p>
         </div>
     </header>
 
@@ -185,64 +236,72 @@
             <div class="card nft-card">
                 <div class="logo-placeholder nft-logo">NFT $GEN</div>
                 <h2>GENESIS NFT ACCESS ($GEN)</h2>
-                <p>Supply Terbatas: **10,000 NFT**</p>
-                <p>Kunci Klaim Token, Airdrop Pass, & Zero-Fee Trading.</p>
+                <p>Limited Supply: **10,000 NFT**</p>
+                <p>Key to Token Claim, Airdrop Pass, & Deflationary Trading.</p>
                 
-                <p style="font-size: 1.5em; color: var(--color-gold);">
-                    **1 NFT = KLAIM 10.000 $COLLECT**
+                <p style="font-size: 1.4em; color: var(--color-gold);">
+                    **1 NFT = 10,000 $COLLECT Claim**
                 </p>
                 
-                <button class="cta-button cta-mint" onclick="alert('Fungsi Mint diaktifkan!')">
-                    MINT $GEN NFT SEKARANG
-                </button>
+                <div class="input-group">
+                    <input type="number" id="nft-quantity" placeholder="Quantity (Max 10 per Tx)" value="1" min="1" max="10">
+                    <input type="text" id="nft-price" value="Price: TBD (e.g., 50 USDC)" readonly>
+                    <button class="cta-button cta-mint-nft" onclick="mintNFT()">
+                        MINT $GEN NFT
+                    </button>
+                </div>
             </div>
 
             <div class="card token-card">
                 <div class="logo-placeholder token-logo">Token $COLLECT</div>
                 <h2>COLLECTIVE UTILITY TOKEN ($COLLECT)</h2>
-                <p>Supply Total: **1.000.000.000 (1B)**</p>
-                <p>Token Komunitas Utama, DeFi Ready.</p>
+                <p>Total Supply: **1,000,000,000 (1B)**</p>
+                <p>Core Community Token, DeFi Ready.</p>
                 
-                <div class="rate">
-                    **RATE MINT:** 10 USDC = 50.000 $COLLECT
-                </div>
+                <p style="font-size: 1.4em; color: var(--color-cyan);">
+                    **RATE:** 10 USDC = 50,000 $COLLECT
+                </p>
 
-                <button class="cta-button cta-claim" onclick="alert('Fungsi Klaim/Beli diaktifkan!')">
-                    CLAIM $COLLECT TOKEN
-                </button>
+                <div class="input-group">
+                    <input type="number" id="usdc-amount" placeholder="USDC Amount to Spend (Min 10)" value="10" min="10">
+                    <input type="text" id="token-receive" value="Receive: 50,000 $COLLECT" readonly>
+                    <button class="cta-button cta-mint-token" onclick="mintToken()">
+                        BUY $COLLECT TOKEN
+                    </button>
+                </div>
             </div>
             
         </section>
         
         <section class="tokenomics-section">
-            <h2>TOKENOMICS & DISTRIBUSI $COLLECT</h2>
-            <p style="margin-bottom: 30px;">Dirancang dengan fokus pada distribusi massal, likuiditas kuat, dan transparansi.</p>
+            <h2>TOKENOMICS & $COLLECT DISTRIBUTION</h2>
+            <p style="margin-bottom: 30px;">Engineered for massive distribution, strong liquidity, and sustainable growth.</p>
 
             <div class="tokenomics-grid">
                 <div class="tokenomics-item">
-                    <h3 style="color: var(--color-cyan);">50%</h3>
-                    <p><strong>MINT & KLAIM</strong></p>
-                    <p>Dialokasikan untuk pemegang NFT $GEN dan Minting Publik Awal.</p>
+                    <h3 style="color: var(--color-gold);">50%</h3>
+                    <p><strong>MINT & CLAIM</strong></p>
+                    <p>Allocated for $GEN NFT holders claim and initial public token minting.</p>
                 </div>
                 <div class="tokenomics-item">
-                    <h3 style="color: var(--color-cyan);">40%</h3>
-                    <p><strong>POOL LIKUIDITAS (LP)</strong></p>
-                    <p>Dikunci permanen untuk menjamin kedalaman pasar dan trading yang stabil.</p>
+                    <h3 style="color: var(--color-gold);">40%</h3>
+                    <p><strong>LIQUIDITY POOL (LP)</strong></p>
+                    <p>Permanently locked to ensure deep market depth and stable trading (Uniswap/DEX).</p>
                 </div>
                 <div class="tokenomics-item">
-                    <h3 style="color: var(--color-cyan);">10%</h3>
-                    <p><strong>TREASURY & DEV</strong></p>
-                    <p>Untuk Marketing, Listing CEX, dan Pengembangan Proyek Jangka Panjang.</p>
+                    <h3 style="color: var(--color-gold);">10%</h3>
+                    <p><strong>TREASURY & DEVELOPMENT</strong></p>
+                    <p>Reserved for marketing, exchange listing fees, and future project expansion.</p>
                 </div>
             </div>
         </section>
 
         <section style="padding: 40px 0; margin-top: 20px;">
-            <h2 style="text-align: center; color: var(--color-gold);">UTILITAS EKSKLUSIF NFT $GEN</h2>
+            <h2 style="text-align: center; color: var(--color-cyan);">EXCLUSIVE $GEN NFT UTILITIES</h2>
             <ul style="list-style-type: none; padding: 0; text-align: center;">
-                <li style="margin: 10px 0;">💎 **Klaim Tetap 1:10000:** Setiap NFT menjamin 10.000 $COLLECT Token.</li>
-                <li style="margin: 10px 0;">🔥 **Fee Deflationary Lock:** Transaksi NFT holder **membakar** supply $COLLECT (Deflasi Aktif).</li>
-                <li style="margin: 10px 0;">🚀 **Alpha Airdrop Pass:** Jaminan Whitelist dan Alokasi di SEMUA proyek di masa depan.</li>
+                <li style="margin: 10px 0;">💎 **Immutable Claim:** Each NFT guarantees 10,000 $COLLECT Tokens.</li>
+                <li style="margin: 10px 0;">🔥 **Fee Deflationary Lock:** NFT holder trades are **BURNED**, actively reducing $COLLECT supply.</li>
+                <li style="margin: 10px 0;">🚀 **Alpha Airdrop Pass:** Guaranteed allocation/whitelist in ALL future project drops.</li>
             </ul>
         </section>
         
@@ -250,13 +309,14 @@
 
     <footer>
         <p>
-            Verifikasi Transparansi Kontrak: <a href="https://www.x402scan.com/" target="_blank">X402Scan Explorer</a>
+            Contract Transparency Verification: <a href="https://www.x402scan.com/" target="_blank">X402Scan Explorer</a>
         </p>
         <p>
             <a href="#">Twitter</a> | 
             <a href="#">Discord</a> | 
             <a href="#">Litepaper</a>
         </p>
+        <p style="margin-top: 10px; font-size: 0.8em;">**Disclaimer:** All funds from Minting are sent directly to the project's designated Owner Wallet as per smart contract design. Trading crypto assets is highly risky.</p>
     </footer>
 
 </body>
