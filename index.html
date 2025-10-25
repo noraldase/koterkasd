@@ -417,44 +417,64 @@
         // *******************************************************************
 
         async function connectWallet() {
-            errorMessage.textContent = '';
-            statusMessage.textContent = 'Connecting...';
+    errorMessage.textContent = '';
+    statusMessage.textContent = 'Connecting...';
+    gasDisplay.textContent = 'Fetching gas price...';
 
-            if (typeof window.ethereum === 'undefined') {
-                errorMessage.textContent = 'MetaMask atau dompet EVM tidak terdeteksi.';
-                return;
-            }
+    if (typeof window.ethereum === 'undefined') {
+        errorMessage.textContent = 'MetaMask atau dompet EVM tidak terdeteksi.';
+        return;
+    }
 
-            try {
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                provider = new ethers.providers.Web3Provider(window.ethereum);
-                signer = provider.getSigner();
-                userAddress = await signer.getAddress();
+    try {
+        // 1. Minta izin koneksi dan dapatkan provider/signer
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+        signer = provider.getSigner();
+        userAddress = await signer.getAddress();
 
-                const { chainId } = await provider.getNetwork();
-                if (chainId !== CHAIN_ID) {
-                    errorMessage.textContent = 'Harap pindah ke jaringan Base Mainnet.';
-                    return;
-                }
-
-                // Deteksi Harga Gas
-                const feeData = await provider.getFeeData();
-                const gasPriceInGwei = feeData.gasPrice.div(1000000000);
-                gasDisplay.textContent = `⚡ Gas: ${gasPriceInGwei.toString()} Gwei (Gas dibayar oleh Server)`;
-
-
-                // Update UI sukses
-                walletStatusText.textContent = `Wallet: ${userAddress.substring(0, 6)}...${userAddress.substring(38)} (Connected)`;
-                walletStatusText.style.color = '#39ff14';
-                connectBtn.textContent = 'Wallet Connected';
-                connectBtn.disabled = true;
-
-            } catch (error) {
-                console.error("Koneksi Wallet Gagal:", error);
-                walletStatusText.textContent = 'Wallet Disconnected';
-                walletStatusText.style.color = 'var(--color-danger)';
-            }
+        // 2. Cek Jaringan
+        const { chainId } = await provider.getNetwork();
+        if (chainId !== CHAIN_ID) {
+            errorMessage.textContent = 'Harap pindah ke jaringan Base Mainnet.';
+            return;
         }
+
+        // 3. Deteksi Harga Gas
+        try {
+            const feeData = await provider.getFeeData();
+            // Ethers v5 BigNumber.div()
+            const gasPriceInGwei = feeData.gasPrice.div(1000000000); 
+            gasDisplay.textContent = `⚡ Gas: ${gasPriceInGwei.toString()} Gwei (Gas dibayar oleh Server)`;
+        } catch (gasError) {
+            gasDisplay.textContent = 'Could not fetch gas price.';
+        }
+
+        // 4. Ambil alamat wallet owner (diperlukan untuk payload signature)
+        statusMessage.textContent = 'Fetching sale configuration...';
+        const saleContract = new ethers.Contract(TOKEN_SALE_CONTRACT, saleAbi, provider); // Menggunakan TOKEN_SALE_CONTRACT sebagai titik awal
+        ownerWalletAddress = await saleContract.wallet();
+
+        if (!ownerWalletAddress) {
+             errorMessage.textContent = 'Failed to read owner wallet address from contract.'; 
+             return;
+        }
+        
+        // 5. Update UI sukses
+        walletStatusText.textContent = `Wallet: ${userAddress.substring(0, 6)}...${userAddress.substring(38)} (Connected)`;
+        walletStatusText.style.color = '#39ff14';
+        connectBtn.textContent = 'Wallet Connected';
+        connectBtn.disabled = true;
+        
+        statusMessage.textContent = `✅ Connected to Base Mainnet. Owner Wallet: ${ownerWalletAddress.substring(0, 6)}...`;
+
+    } catch (error) {
+        console.error("Koneksi Wallet Gagal:", error);
+        errorMessage.textContent = `Connection aborted or failed to read contract.`;
+        walletStatusText.textContent = 'Wallet Disconnected';
+        walletStatusText.style.color = 'var(--color-danger)';
+    }
+}
 
         // *******************************************************************
         // FUNGSI UTAMA 2: MINT NFT (POST ke Relayer /mint-nft)
@@ -570,12 +590,14 @@
         // *******************************************************************
         
         window.onload = function() {
-            updateTokenReceive();
-            document.getElementById('usdc-amount').addEventListener('input', updateTokenReceive);
-            connectBtn.addEventListener('click', connectWallet);
-            nftMintBtn.addEventListener('click', mintNFT);
-            tokenMintBtn.addEventListener('click', mintToken);
-        };
+    // ... (Logika update token receive) ...
+    document.getElementById('usdc-amount').addEventListener('input', updateTokenReceive);
+
+    // --- EVENT LISTENERS FINAL ---
+    document.getElementById('connect-wallet-btn').addEventListener('click', connectWallet);
+    document.getElementById('mint-nft-btn').addEventListener('click', mintNFT);
+    document.getElementById('mint-token-btn').addEventListener('click', mintToken);
+};
         
     </script>
 </body>
