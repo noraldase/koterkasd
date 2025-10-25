@@ -13,6 +13,8 @@
             --color-text: #E0E0FF;
             --color-bg-light: #1c1c4f;
             --color-danger: #ff4d4d; /* For Disconnected State */
+            --color-primary-accent: #00bfff; /* Sky Blue/Deep Cyan for accents */
+            --color-secondary-accent: #ff00ff; /* Magenta for secondary glow */
         }
 
         body {
@@ -22,20 +24,67 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            min-height: 100vh; /* Ensure full viewport height */
+            position: relative;
+            overflow-x: hidden;
         }
+
+        /* --- STYLES FOR MEMUKAU BACKGROUND --- */
+
+        /* 1. Subtle Radial Gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 10%, rgba(0, 255, 255, 0.1), transparent 30%),
+                        radial-gradient(circle at 80% 90%, rgba(255, 0, 255, 0.1), transparent 40%);
+            z-index: -2;
+        }
+
+        /* 2. Grid/Circuit Pattern Overlay (Optional but Cool) */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 215, 0, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px; /* Adjust size for grid density */
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
+        }
+        /* --- END BACKGROUND STYLES --- */
 
         .container {
             width: 90%;
             max-width: 1200px;
             margin: auto;
             padding: 20px 0;
+            position: relative; /* Ensure content is above background effects */
+            z-index: 10;
         }
 
         header {
-            background-color: #1c1c4f;
+            background-color: rgba(28, 28, 79, 0.85); /* Slightly transparent background */
             padding: 15px 0;
             border-bottom: 2px solid var(--color-gold);
             text-align: center;
+            backdrop-filter: blur(5px); /* Add a slight blur effect */
+            -webkit-backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+        
+        header h1 {
+            color: var(--color-cyan);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Neon glow effect */
         }
 
         /* Wallet Status and Connect Button */
@@ -53,11 +102,13 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 0 15px var(--color-cyan);
         }
 
         #connect-wallet-btn:hover {
             background-color: #66FFFF;
+            transform: scale(1.05);
         }
         
         /* Hero Section - Dual Panel Layout */
@@ -70,18 +121,25 @@
         }
 
         .card {
-            background-color: var(--color-bg-light);
+            background-color: rgba(28, 28, 79, 0.9); /* Slightly darker/more opaque card */
             padding: 30px;
             border-radius: 12px;
             flex: 1;
             min-width: 300px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2); /* Stronger glow */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.4);
         }
 
         .card h2 {
             color: var(--color-gold);
             margin-top: 0;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
         }
 
         .logo-placeholder {
@@ -94,16 +152,19 @@
             justify-content: center;
             font-size: 1.5em;
             font-weight: bold;
+            box-shadow: 0 0 20px;
         }
 
         .nft-logo {
             background-color: var(--color-gold);
             color: var(--color-dark);
+            box-shadow: 0 0 20px var(--color-gold);
         }
 
         .token-logo {
             background-color: var(--color-cyan);
             color: var(--color-dark);
+            box-shadow: 0 0 20px var(--color-cyan);
         }
         
         /* Input and Button Group */
@@ -115,54 +176,84 @@
         }
 
         .input-group input {
-            padding: 10px;
-            border-radius: 5px;
+            padding: 12px;
+            border-radius: 8px;
             border: 1px solid var(--color-cyan);
             background-color: var(--color-dark);
             color: var(--color-text);
             text-align: center;
+            font-size: 1.1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
         
         .cta-button {
-            padding: 12px;
+            padding: 15px;
             border: none;
-            border-radius: 8px;
-            font-size: 1em;
+            border-radius: 10px;
+            font-size: 1.1em;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            text-transform: uppercase;
         }
 
         .cta-mint-nft {
             background-color: var(--color-gold);
             color: var(--color-dark);
+            box-shadow: 0 0 15px var(--color-gold);
         }
 
         .cta-mint-token {
             background-color: var(--color-cyan);
             color: var(--color-dark);
+            box-shadow: 0 0 15px var(--color-cyan);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
         }
 
         /* Tokenomics Section */
         .tokenomics-section {
-            background-color: var(--color-bg-light);
+            background-color: rgba(28, 28, 79, 0.9);
             padding: 40px;
             border-radius: 12px;
             margin-top: 40px;
             text-align: left;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+        }
+        
+        .tokenomics-section h2 {
+             color: var(--color-gold);
         }
 
         .tokenomics-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            margin-top: 20px;
+            margin-top: 30px;
             text-align: center;
+        }
+
+        .tokenomics-item {
+            padding: 20px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
         }
 
         .tokenomics-item h3 {
             color: var(--color-cyan);
             margin-bottom: 5px;
+            font-size: 1.8em;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
         }
         
         /* Footer */
@@ -172,12 +263,34 @@
             margin-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9em;
+            background-color: rgba(10, 10, 42, 0.8);
         }
 
         footer a {
             color: var(--color-cyan);
             text-decoration: none;
             margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--color-gold);
+        }
+        
+        /* Utility List Styling */
+        section ul {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0;
+        }
+
+        section ul li {
+            background-color: var(--color-bg-light);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid var(--color-cyan);
+            text-align: left;
         }
         
         /* Media Queries for Mobile */
@@ -196,21 +309,34 @@
 
         // --- WEB3 PLACEHOLDER FUNCTIONS ---
         function connectWallet() {
+            alert('Connecting to Wallet...');
             console.log('Connecting to Wallet (e.g., MetaMask)...');
             // Implementasikan logika Web3.js / Ethers.js di sini
+            // Untuk demo, kita ubah status menjadi Connected
+            const statusText = document.getElementById('wallet-status-text');
+            const connectBtn = document.getElementById('connect-wallet-btn');
+            statusText.textContent = 'Wallet: 0x...a1b2c3d4 (Connected)';
+            statusText.style.color = '#39ff14'; // Neon Green
+            connectBtn.textContent = 'Wallet Connected';
+            connectBtn.disabled = true;
+            connectBtn.style.backgroundColor = '#39ff14';
+            connectBtn.style.boxShadow = '0 0 15px #39ff14';
         }
 
         function mintNFT() {
             // Dapatkan jumlah NFT dari input
             const quantity = document.getElementById('nft-quantity').value;
-            console.log(`Initiating Smart Contract Mint for ${quantity} NFT(s). Funds to Owner Wallet.`);
+            alert(`Minting ${quantity} $GEN NFT(s). Check your wallet for transaction confirmation.`);
+            console.log(`Initiating Smart Contract Mint for ${quantity} NFT(s).`);
             // Implementasikan logika Smart Contract Mint NFT (ERC-721) di sini
         }
 
         function mintToken() {
             // Dapatkan jumlah USDC yang akan dibeli dari input
             const usdcAmount = document.getElementById('usdc-amount').value;
-            console.log(`Initiating Smart Contract Purchase for ${usdcAmount} USDC. Funds to Owner Wallet.`);
+            const receiveText = document.getElementById('token-receive').value;
+            alert(`Buying $COLLECT with ${usdcAmount} USDC. You will ${receiveText}. Check your wallet for transaction confirmation.`);
+            console.log(`Initiating Smart Contract Purchase for ${usdcAmount} USDC.`);
             // Implementasikan logika Smart Contract Buy Token (ERC-20) di sini
         }
 
@@ -219,17 +345,22 @@
             const usdcInput = document.getElementById('usdc-amount');
             const tokenOutput = document.getElementById('token-receive');
             
-            // Bersihkan input
-            const usdcAmount = parseFloat(usdcInput.value.replace(/,/g, ''));
+            // Bersihkan input dan batasi agar hanya angka
+            let usdcAmount = parseFloat(usdcInput.value.replace(/,/g, ''));
             
-            if (isNaN(usdcAmount) || usdcAmount < 0) {
+            // Batasi nilai agar minimal 1
+            if (isNaN(usdcAmount) || usdcAmount < 1) {
+                usdcAmount = 0;
                 tokenOutput.value = 'Receive: 0 $COLLECT';
                 return;
             }
+            
+            // Update input value (optional: to clean up if user typed non-numeric)
+            usdcInput.value = usdcAmount;
 
             const receivedTokens = usdcAmount * TOKEN_RATE;
             
-            // Format angka dengan pemisah ribuan (Locale 'en' for standard US/Crypto format)
+            // Format angka dengan pemisah ribuan
             const formattedTokens = receivedTokens.toLocaleString('en', { 
                 minimumFractionDigits: 0, 
                 maximumFractionDigits: 0 
@@ -239,12 +370,16 @@
         }
 
         // Jalankan saat halaman dimuat untuk mengatur nilai awal
-        window.onload = updateTokenReceive;
+        window.onload = function() {
+            updateTokenReceive();
+            // Tambahkan event listener untuk memanggil updateTokenReceive setiap kali input berubah
+            document.getElementById('usdc-amount').addEventListener('input', updateTokenReceive);
+        };
     </script>
 </head>
 <body>
-
-    <header>
+    
+    <div class="background-overlay"></div> <header>
         <div class="container">
             <div id="wallet-status">
                 <span id="wallet-status-text" style="color: var(--color-danger);">Wallet Disconnected</span>
@@ -291,7 +426,7 @@
                 </p>
 
                 <div class="input-group">
-                    <input type="number" id="usdc-amount" placeholder="USDC Amount to Spend (Min 1)" value="10" min="1" oninput="updateTokenReceive()">
+                    <input type="number" id="usdc-amount" placeholder="USDC Amount to Spend (Min 1)" value="10" min="1">
                     <input type="text" id="token-receive" value="Receive: 50,000 $COLLECT" readonly>
                     
                     <button class="cta-button cta-mint-token" onclick="mintToken()">
@@ -327,10 +462,10 @@
 
         <section style="padding: 40px 0; margin-top: 20px;">
             <h2 style="text-align: center; color: var(--color-cyan);">EXCLUSIVE $GEN NFT UTILITIES</h2>
-            <ul style="list-style-type: none; padding: 0; text-align: center;">
-                <li style="margin: 10px 0;">💎 **Immutable Claim:** Each NFT guarantees 10,000 $COLLECT Tokens.</li>
-                <li style="margin: 10px 0;">🔥 **Fee Deflationary Lock:** NFT holder trades are **BURNED**, actively reducing $COLLECT supply.</li>
-                <li style="margin: 10px 0;">🚀 **Alpha Airdrop Pass:** Guaranteed allocation/whitelist in ALL future project drops.</li>
+            <ul style="list-style-type: none; padding: 0;">
+                <li>💎 **Immutable Claim:** Each NFT guarantees 10,000 $COLLECT Tokens.</li>
+                <li>🔥 **Fee Deflationary Lock:** NFT holder trades are **BURNED**, actively reducing $COLLECT supply.</li>
+                <li>🚀 **Alpha Airdrop Pass:** Guaranteed allocation/whitelist in ALL future project drops.</li>
             </ul>
         </section>
         
